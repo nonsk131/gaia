@@ -34,7 +34,7 @@ for i in range(10):
     mock_G_int = mock_phot_g_mean_mag_int - 10 + 5*np.log10(mock_parallax)
 
     dat_i = np.column_stack((mock_ra, mock_dec, mock_dist, mock_G, mock_bprp, mock_G_int, mock_bprp_int))
-    data = np.vstack(data, dat_i)
+    data = np.vstack((data, dat_i))
 
 data = data[1:]
 np.savetxt('/mnt/home/npanithanpaisal/gaia/mock.txt', data)
