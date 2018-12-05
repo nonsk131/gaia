@@ -5,8 +5,8 @@ data = np.zeros((1,7))
 
 for i in range(10):
     print('doing index {}'.format(i))
-    loc = '/mnt/ceph/users/firesims/ananke/GaiaMocks/m12f/test/lsr-1-rslice-{}.m12f-res7100-md-sliced-gcat-dr2.hdf5'.format(i)
-    #loc = '/mnt/ceph/users/firesims/ananke/GaiaMocks/m12f/lsr_0/lsr-0-rslice-{}.m12f-res7100-md-sliced-gcat-dr2.hdf5'.format(i)
+    #loc = '/mnt/ceph/users/firesims/ananke/GaiaMocks/m12f/test/lsr-1-rslice-{}.m12f-res7100-md-sliced-gcat-dr2.hdf5'.format(i)
+    loc = '/mnt/ceph/users/firesims/ananke/GaiaMocks/m12f/lsr_0/lsr-0-rslice-{}.m12f-res7100-md-sliced-gcat-dr2.hdf5'.format(i)
     f = h5py.File(loc, 'r')
 
     # pick high latitude stars
