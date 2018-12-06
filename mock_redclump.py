@@ -63,7 +63,7 @@ for r_span in r_ensemble:
         dis = discrepancies(data_cut)
         dis_array[i,j] = dis
         j += 1
-    ax.plot(z_ensemble, dis_array[i,:], linewidth=3, label='r = {:2.1} kpc''.format(r_span))
+    ax.plot(z_ensemble, dis_array[i,:], linewidth=3, label='r = {:2.1} kpc'.format(r_span))
 
     i += 1
 ax.set_xlabel('z [kpc]')
