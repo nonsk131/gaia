@@ -49,22 +49,23 @@ gcentric.representation = 'cylindrical'
 #r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
 r_ensemble = np.linspace(0.1, 3, 31)*u.kpc
 z_ensemble = np.array([2])*u.kpc
-dis_array = np.zeros((len(r_ensemble), len(z_ensemble)))
+dis_array = np.zeros(len(r_ensemble))
 i = 0
 j = 0
 fig = plt.figure(figsize=((10,8)))
 ax = fig.add_subplot(1,1,1)
 for r_span in r_ensemble:
     j = 0
-    for z_span in z_ensemble:
-        rmin = 8.3*u.kpc-r_span
-        rmax = 8.3*u.kpc+r_span
-        n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
-        data_cut = data[n]
-        dis = discrepancies(data_cut)
-        dis_array[i,j] = dis
-        j += 1
-    ax.plot(r_ensemble, dis_array[:,0], linewidth=3)
+    #for z_span in z_ensemble:
+    z_span=2
+    rmin = 8.3*u.kpc-r_span
+    rmax = 8.3*u.kpc+r_span
+    n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
+    data_cut = data[n]
+    dis = discrepancies(data_cut)
+    dis_array[j] = dis
+    j += 1
+ax.plot(r_ensemble, dis_array, linewidth=3)
 
     i += 1
 #ax.plot([0.1,3.5],[0.05, 0.05], linestyle='dashed', linewidth=2)
