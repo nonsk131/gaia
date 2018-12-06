@@ -66,7 +66,7 @@ for r_span in r_ensemble:
     ax.plot(z_ensemble, dis_array[i,:], linewidth=3, label='r = {:2.1f}'.format(r_span))
 
     i += 1
-ax.plot([0.1,2],[0.5, 0.5], 'dashed', linewidth=2)
+ax.plot([0.1,3.5],[0.5, 0.5], linestyle='dashed', linewidth=2)
 ax.set_xlabel('z [kpc]')
 ax.set_ylabel(r'\sigma')
 ax.legend(loc='best')
