@@ -2,6 +2,7 @@ import numpy as np
 from astropy.coordinates import SkyCoord,Galactocentric
 import astropy.units as u
 import astropy.coordinates as coord
+import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
