@@ -68,7 +68,7 @@ for r_span in r_ensemble:
     i += 1
 ax.plot([0.1,3.5],[0.05, 0.05], linestyle='dashed', linewidth=2)
 ax.set_xlabel('z [kpc]')
-ax.set_ylabel(r'\sigma')
+ax.set_ylabel('dispersion')
 ax.legend(loc='best')
 fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion.png', dpi=300)
 np.savetxt('/mnt/home/npanithanpaisal/gaia/dispersion.txt', dis_array)
