@@ -13,8 +13,8 @@ def dispersion(data):
     return np.sqrt(s/len(a))
 
 def discrepancies(data):
-    a = data[:3]-data[:5]
-    b = data[:4]-data[:6]
+    a = data[:,3]-data[:,5]
+    b = data[:,4]-data[:,6]
     s = (a**2 + b**2).sum()
     return np.sqrt(s/len(a))
 
