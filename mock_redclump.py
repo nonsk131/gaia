@@ -46,8 +46,9 @@ c = coord.ICRS(ra=data[:,0] * u.degree,
 gcentric = c.transform_to(coord.Galactocentric)
 gcentric.representation = 'cylindrical'
 
-r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
-z_ensemble = np.array([0.1,0.2,0.3,0.4,0.5,1.0,1.5,2,2.5,3,3.5])*u.kpc
+#r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
+r_emsemble = np.linspace(0.1, 3, 31)
+z_ensemble = np.array([2])*u.kpc
 dis_array = np.zeros((len(r_ensemble), len(z_ensemble)))
 i = 0
 j = 0
@@ -63,12 +64,12 @@ for r_span in r_ensemble:
         dis = discrepancies(data_cut)
         dis_array[i,j] = dis
         j += 1
-    ax.plot(z_ensemble, dis_array[i,:], linewidth=3, label='r = {:2.1f}'.format(r_span))
+    ax.plot(r_ensemble, dis_array, linewidth=3)
 
     i += 1
 #ax.plot([0.1,3.5],[0.05, 0.05], linestyle='dashed', linewidth=2)
-ax.set_xlabel('z [kpc]')
+ax.set_xlabel('r [kpc]')
 ax.set_ylabel('dispersion')
-ax.legend(loc='best')
-fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion.png', dpi=300)
+#ax.legend(loc='best')
+fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion2.png', dpi=300)
 np.savetxt('/mnt/home/npanithanpaisal/gaia/dispersion.txt', dis_array)
