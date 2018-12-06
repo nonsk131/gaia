@@ -46,7 +46,7 @@ c = coord.ICRS(ra=data[:,0] * u.degree,
 gcentric = c.transform_to(coord.Galactocentric)
 gcentric.representation = 'cylindrical'
 
-r_ensemble = np.array([0.1,0.5,1,2,3])*u.kpc
+r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
 z_ensemble = np.array([0.1,0.2,0.3,0.4,0.5,1.0,1.5,2,2.5,3,3.5])*u.kpc
 dis_array = np.zeros((len(r_ensemble), len(z_ensemble)))
 i = 0
@@ -66,8 +66,9 @@ for r_span in r_ensemble:
     ax.plot(z_ensemble, dis_array[i,:], linewidth=3, label='r = {:2.1f}'.format(r_span))
 
     i += 1
+ax.plot([0.1,2],[0.5, 0.5], 'dashed', linewidth=2)
 ax.set_xlabel('z [kpc]')
-ax.set_ylabel(r'dispersion [$\sigma$]')
+ax.set_ylabel(r'\sigma')
 ax.legend(loc='best')
 fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion.png', dpi=300)
 np.savetxt('/mnt/home/npanithanpaisal/gaia/dispersion.txt', dis_array)
