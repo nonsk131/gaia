@@ -3,6 +3,7 @@ import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
+import matplotlib.colors as colors
 
 def pad_withNan(p):
     ii,jj = np.where(p < 1)
