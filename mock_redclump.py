@@ -2,6 +2,9 @@ import numpy as np
 from astropy.coordinates import SkyCoord,Galactocentric
 import astropy.units as u
 import astropy.coordinates as coord
+matplotlib.use('agg')
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 
 def pick_clump(data, minmag=1, maxmag=1.4, gmin=0, gmax=1):
     return data[np.where((data[:,5]>gmin) & (data[:,5]<gmax) & (data[:,6] > minmag) & (data[:,6] < maxmag))]
