@@ -12,30 +12,44 @@ def dispersion(data):
     s = (a**2 + b**2).sum()
     return np.sqrt(s/len(a))
 
-data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock.txt')
-data = pick_clump(data)
-c = coord.ICRS(ra=data[:,0] * u.degree,
-                dec=data[:,1] * u.degree,
-                distance=data[:,2] * u.kpc)
-
-gcentric = c.transform_to(coord.Galactocentric)
-gcentric.representation = 'cylindrical'
-
-# pick out stars within the theta angle
-n = np.append(np.where((gcentric.phi > 175*u.deg))[0], np.where((gcentric.phi < -175*u.deg))[0])
-gcentric = gcentric[n]
-data = data[n]
-
-np.savetxt('/mnt/home/npanithanpaisal/gaia/mock_175cut.txt', data)
-# data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock_175cut.txt')
+# data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock.txt')
+# data = pick_clump(data)
 # c = coord.ICRS(ra=data[:,0] * u.degree,
 #                 dec=data[:,1] * u.degree,
 #                 distance=data[:,2] * u.kpc)
 #
-# gcentric = c.transform_to(coord.Galactocentric(galcen_v_sun = coord.CartesianDifferential((11.1, -232.24, 7.25)*u.km/u.s)))
+# gcentric = c.transform_to(coord.Galactocentric)
 # gcentric.representation = 'cylindrical'
 #
-# r_ensemble = np.linspace(0.5.3.5,13)
-# z_ensemble = np.lin
-# for r_span in np.linspace(0.5)
-#     for z_span in (np.array(arange))
+# # pick out stars within the theta angle
+# n = np.append(np.where((gcentric.phi > 175*u.deg))[0], np.where((gcentric.phi < -175*u.deg))[0])
+# gcentric = gcentric[n]
+# data = data[n]
+#
+# np.savetxt('/mnt/home/npanithanpaisal/gaia/mock_175cut.txt', data)
+
+data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock_175cut.txt')
+c = coord.ICRS(ra=data[:,0] * u.degree,
+                dec=data[:,1] * u.degree,
+                distance=data[:,2] * u.kpc)
+
+gcentric = c.transform_to(coord.Galactocentric(galcen_v_sun = coord.CartesianDifferential((11.1, -232.24, 7.25)*u.km/u.s)))
+gcentric.representation = 'cylindrical'
+
+r_ensemble = np.array(0.1,0.2,0.3,0.4,0.5,1.0,1.5,2,2.5,3,3.5)*u.kpc
+z_ensemble = np.linspace(0.1,0.2,0.3,0.4,0.5,1.0,1.5,2,2.5,3,3.5)*u.kpc
+dis_array = np.zeros((len(r_ensemble), len(z_ensemble)))
+i = 0
+j = 0
+for r_span in r_ensemble:
+    j = 0
+    for z_span in z_ensemble:
+        rmin = 8.3*u.kpc-r_span
+        rmax = 8.3*u.kpc+r_span
+        n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
+        data_cut = data[n]
+        dis = dispersion(data_cut)
+        dis_array[i,j] = dis
+        j += 1
+    i += 1
+np.savetxt('/mnt/home/npanithanpaisal/gaia/dispersion.txt', dis_array)
