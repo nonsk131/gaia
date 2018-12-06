@@ -28,7 +28,7 @@ def dispersion(data):
 #
 # np.savetxt('/mnt/home/npanithanpaisal/gaia/mock_175cut.txt', data)
 
-data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock_175cut.txt')
+data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock_175cut_redclump.txt')
 c = coord.ICRS(ra=data[:,0] * u.degree,
                 dec=data[:,1] * u.degree,
                 distance=data[:,2] * u.kpc)
