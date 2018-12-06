@@ -33,7 +33,7 @@ c = coord.ICRS(ra=data[:,0] * u.degree,
                 dec=data[:,1] * u.degree,
                 distance=data[:,2] * u.kpc)
 
-gcentric = c.transform_to(coord.Galactocentric(galcen_v_sun = coord.CartesianDifferential((11.1, -232.24, 7.25)*u.km/u.s)))
+gcentric = c.transform_to(coord.Galactocentric)
 gcentric.representation = 'cylindrical'
 
 r_ensemble = np.array(0.1,0.2,0.3,0.4,0.5,1.0,1.5,2,2.5,3,3.5)*u.kpc
