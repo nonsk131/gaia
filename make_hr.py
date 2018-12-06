@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
 data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock.txt')
+print(data[:10])
 
 xbin = np.linspace(-1,5,100)
 ybin = np.linspace(-5,17,100)
