@@ -6,8 +6,8 @@ plt.switch_backend('agg')
 
 data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock.txt')
 
-xbin = np.linspace(-1,5,1000)
-ybin = np.linspace(-5,17,1000)
+xbin = np.linspace(-1,5,100)
+ybin = np.linspace(-5,17,100)
 
 H, e1, e2 = np.histogram2d(data[:,4], data[:,3], bins=(xbin, ybin))
 H = H.T
@@ -20,7 +20,7 @@ ax.set_xlabel('Bp - Rp')
 ax.set_ylabel('M_G')
 ax.set_title('With Extinction')
 fig.colorbar(im, ax =ax)
-fig.savefig('/mnt/home/npanithanpaisal/gaia/HR_extinction.pdf')
+fig.savefig('/mnt/home/npanithanpaisal/gaia/HR_extinction100.png', dpi=300)
 
 
 
@@ -35,4 +35,4 @@ ax.set_xlabel('Bp - Rp')
 ax.set_ylabel('M_G')
 ax.set_title('With Extinction')
 fig.colorbar(im, ax =ax)
-fig.savefig('/mnt/home/npanithanpaisal/gaia/HR_no_extinction.pdf')
+fig.savefig('/mnt/home/npanithanpaisal/gaia/HR_no_extinction100.png', dpi=300)
