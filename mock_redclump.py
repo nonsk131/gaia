@@ -64,7 +64,7 @@ for r_span in r_ensemble:
         dis = discrepancies(data_cut)
         dis_array[i,j] = dis
         j += 1
-    ax.plot(r_ensemble, dis_array, linewidth=3)
+    ax.plot(r_ensemble, dis_array[:,0], linewidth=3)
 
     i += 1
 #ax.plot([0.1,3.5],[0.05, 0.05], linestyle='dashed', linewidth=2)
