@@ -12,6 +12,12 @@ def dispersion(data):
     s = (a**2 + b**2).sum()
     return np.sqrt(s/len(a))
 
+def discrepancies(data):
+    a = data[:3]-data[:5]
+    b = data[:4]-data[:6]
+    s = (a**2 + b**2).sum()
+    return np.sqrt(s/len(a))
+
 # data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/mock.txt')
 # data = pick_clump(data)
 # c = coord.ICRS(ra=data[:,0] * u.degree,
@@ -48,7 +54,7 @@ for r_span in r_ensemble:
         rmax = 8.3*u.kpc+r_span
         n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
         data_cut = data[n]
-        dis = dispersion(data_cut)
+        dis = discrepancies(data_cut)
         dis_array[i,j] = dis
         j += 1
     i += 1
