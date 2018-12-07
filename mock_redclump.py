@@ -48,7 +48,7 @@ gcentric.representation = 'cylindrical'
 
 #r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
 r_ensemble = np.linspace(0.1, 2.5, 26)*u.kpc
-z_ensemble = np.array([2])*u.kpc
+z_ensemble = np.array([3])*u.kpc
 dis_array = np.zeros(len(r_ensemble))
 i = 0
 j = 0
@@ -72,5 +72,5 @@ ax.plot(r_ensemble, dis_array, linewidth=3)
 ax.set_xlabel('r [kpc]')
 ax.set_ylabel('dispersion')
 #ax.legend(loc='best')
-fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion2.png', dpi=300)
+fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion3.png', dpi=300)
 np.savetxt('/mnt/home/npanithanpaisal/gaia/dispersion.txt', dis_array)
