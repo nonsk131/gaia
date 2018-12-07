@@ -27,12 +27,12 @@ def get_hist(gcentric):
     H, e1, e2 = np.histogram2d(gcentric.rho, gcentric.z, bins=(rr, zz))
     H = H.T
     print H
-    H_new = pad_withNan(H)
-    print H_new
+    #H_new = pad_withNan(H)
+    #print H_new
     fig = plt.figure(figsize=((12,8)))
     ax = fig.add_subplot(1,1,1)
     X, Y = np.meshgrid(e1, e2)
-    im = ax.pcolormesh(X, Y, H_new, cmap='jet')
+    im = ax.pcolormesh(X, Y, H, cmap='jet')
     fig.colorbar(im, ax =ax)
     fig.savefig('/mnt/home/npanithanpaisal/gaia/star_dist.png', dpi=300)
 
@@ -40,7 +40,26 @@ def get_hist(gcentric):
     r_array = np.zeros(l)
     z_array = np.zeros(l)
     val = np.zeros(l)
-    r_center = rr[1:] + rr[:-1]
+    r_center = 0.5*(rr[1:] + rr[:-1])
+    z_center = 0.5*(zz[1:] + zz[:-1])
+    k = 0
+    for i, r in enumerate(r_center):
+        for j, z in enumerate(z_center):
+            r_array[k] = r
+            z_array[k] = z
+            val[k] = H
+            k += 1
+
+    return r_array, z_array, val
+
+
+def get_volume(rr, zz):
+    height = zz[1] - zz[0]
+    v = np.zeros(len(rr)-1)
+    i = 0
+    for r1, r2 in zip(rr[:-1], rr[1:]):
+        v[i] = (1/36.) * np.pi * (r2**2 - r1**2) * height
+    return v
 
 
 def fit_func(X, rho, f, l1, h1, l2, h2):
