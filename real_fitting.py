@@ -9,7 +9,7 @@ plt.switch_backend('agg')
 
 #Mg,bp_rp,ra,dec,parallax,phot_g_mean_mag
 def pick_mstar(data, minmag=2.5, maxmag=3, gmin=5):
-    return np.where((data[:,0]>gmin) & (data[:,1] > minmag) & (data[:,1] < maxmag))
+    return data[np.where((data[:,0]>gmin) & (data[:,1] > minmag) & (data[:,1] < maxmag))]
 
 def get_bin_edges():
     r_edges = np.linspace(6.5,10.1,37)*u.kpc
@@ -34,6 +34,12 @@ def get_hist(gcentric):
     im = ax.pcolormesh(X, Y, H_new, cmap='jet')
     fig.colorbar(im, ax =ax)
     fig.savefig('/mnt/home/npanithanpaisal/gaia/star_dist.png', dpi=300)
+
+
+def fit_func(X, rho, f, l1, h1, l2, h2):
+    R, z = X
+    return rho* ((np.exp(-R/l1)* np.exp(-z/h1)) + f * (np.exp(-R/l2)* np.exp(-z/h2)))
+
 
 
 data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut.txt')
