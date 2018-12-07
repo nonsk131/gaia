@@ -76,7 +76,7 @@ ax.plot(r_ensemble, dis_array, linewidth=3)
     #i += 1
 
 
-ax.plot([0.1,3.5],[0.2539, 0.2539], linestyle='dashed', linewidth=2)
+ax.plot([0.1,2.5],[0.2539, 0.2539], linestyle='dashed', linewidth=2)
 ax.set_xlabel('r [kpc]')
 ax.set_ylabel('dispersion')
 #ax.legend(loc='best')
