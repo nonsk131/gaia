@@ -61,7 +61,8 @@ for r_span in r_ensemble:
     rmax = 8.3*u.kpc+r_span
     n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
     data_cut = data[n]
-    dis = discrepancies(data_cut)
+    #dis = discrepancies(data_cut)
+    dis = dispersion(data_cut)
     print len(n), dis
     dis_array[j] = dis
     j += 1
@@ -72,5 +73,5 @@ ax.plot(r_ensemble, dis_array, linewidth=3)
 ax.set_xlabel('r [kpc]')
 ax.set_ylabel('dispersion')
 #ax.legend(loc='best')
-fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion3.png', dpi=300)
+fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion4.png', dpi=300)
 np.savetxt('/mnt/home/npanithanpaisal/gaia/dispersion.txt', dis_array)
