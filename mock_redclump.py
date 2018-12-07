@@ -61,6 +61,7 @@ for r_span in r_ensemble:
     rmin = 8.3*u.kpc-r_span
     rmax = 8.3*u.kpc+r_span
     n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
+    print len(n)
     data_cut = data[n]
     dis = discrepancies(data_cut)
     dis_array[j] = dis
