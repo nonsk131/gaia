@@ -26,14 +26,21 @@ def get_hist(gcentric):
     rr, zz = get_bin_edges()
     H, e1, e2 = np.histogram2d(gcentric.rho, gcentric.z, bins=(rr, zz))
     H = H.T
+    print H
     H_new = pad_withNan(H)
-
+    print H_new
     fig = plt.figure(figsize=((12,8)))
     ax = fig.add_subplot(1,1,1)
     X, Y = np.meshgrid(e1, e2)
     im = ax.pcolormesh(X, Y, H_new, cmap='jet')
     fig.colorbar(im, ax =ax)
     fig.savefig('/mnt/home/npanithanpaisal/gaia/star_dist.png', dpi=300)
+
+    l = (len(rr)-1) * (len(zz)-1)
+    r_array = np.zeros(l)
+    z_array = np.zeros(l)
+    val = np.zeros(l)
+    r_center = rr[1:] + rr[:-1]
 
 
 def fit_func(X, rho, f, l1, h1, l2, h2):
