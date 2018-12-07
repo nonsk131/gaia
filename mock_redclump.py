@@ -62,7 +62,7 @@ ax = fig.add_subplot(1,1,1)
 for r_span in r_ensemble:
     #j = 0
     #for z_span in z_ensemble:
-    z_span = 1.5*u.kpc
+    z_span = 2.5*u.kpc
     rmin = 8.3*u.kpc-r_span
     rmax = 8.3*u.kpc+r_span
     n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
@@ -76,9 +76,9 @@ ax.plot(r_ensemble, dis_array, linewidth=3)
     #i += 1
 
 
-#ax.plot([0.1,3.5],[0.05, 0.05], linestyle='dashed', linewidth=2)
+ax.plot([0.1,3.5],[0.2539, 0.2539], linestyle='dashed', linewidth=2)
 ax.set_xlabel('r [kpc]')
 ax.set_ylabel('dispersion')
 #ax.legend(loc='best')
-fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion6.png', dpi=300)
+fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion7.png', dpi=300)
 np.savetxt('/mnt/home/npanithanpaisal/gaia/dispersion.txt', dis_array)
