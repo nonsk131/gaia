@@ -57,7 +57,7 @@ ax = fig.add_subplot(1,1,1)
 for r_span in r_ensemble:
     j = 0
     #for z_span in z_ensemble:
-    z_span=2
+    z_span=2*u.kpc
     rmin = 8.3*u.kpc-r_span
     rmax = 8.3*u.kpc+r_span
     n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
@@ -67,7 +67,7 @@ for r_span in r_ensemble:
     j += 1
 ax.plot(r_ensemble, dis_array, linewidth=3)
 
-    
+
 #ax.plot([0.1,3.5],[0.05, 0.05], linestyle='dashed', linewidth=2)
 ax.set_xlabel('r [kpc]')
 ax.set_ylabel('dispersion')
