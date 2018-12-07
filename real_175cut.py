@@ -13,7 +13,7 @@ def read_real_data():
                 dec=data[:,3] * u.degree,
                 distance=(1./data[:,4]) * u.kpc)
 
-    gcentric = c.transform_to(coord.Galactocentric))
+    gcentric = c.transform_to(coord.Galactocentric)
     gcentric.representation = 'cylindrical'
 
     n = np.append(np.where((gcentric.phi > 175*u.deg))[0], np.where((gcentric.phi < -175*u.deg))[0])
