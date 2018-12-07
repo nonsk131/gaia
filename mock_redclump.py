@@ -61,9 +61,9 @@ for r_span in r_ensemble:
     rmin = 8.3*u.kpc-r_span
     rmax = 8.3*u.kpc+r_span
     n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
-    print len(n)
     data_cut = data[n]
     dis = discrepancies(data_cut)
+    print len(n), dis
     dis_array[j] = dis
     j += 1
 ax.plot(r_ensemble, dis_array, linewidth=3)
