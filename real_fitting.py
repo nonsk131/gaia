@@ -9,7 +9,7 @@ plt.switch_backend('agg')
 
 #Mg,bp_rp,ra,dec,parallax,phot_g_mean_mag
 def pick_mstar(data, minmag=2.5, maxmag=3, gmin=5):
-    return np.where((dat[:,0]>gmin) & (dat[:,1] > minmag) & (dat[:,1] < maxmag))
+    return np.where((data[:,0]>gmin) & (data[:,1] > minmag) & (data[:,1] < maxmag))
 
 def get_bin_edges():
     r_edges = np.linspace(6.5,10.1,37)*u.kpc
