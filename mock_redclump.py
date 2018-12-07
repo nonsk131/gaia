@@ -49,7 +49,7 @@ gcentric.representation = 'cylindrical'
 a = data[:,5] - np.mean(data[:,5])
 b = data[:,6] - np.mean(data[:,6])
 s = (a**2 + b**2).sum()
-return 'intrinsic dispersion = {}'.format(np.sqrt(s/len(a)))
+print 'intrinsic dispersion = {}'.format(np.sqrt(s/len(a)))
 
 r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
 #r_ensemble = np.linspace(0.1, 2.5, 26)*u.kpc
