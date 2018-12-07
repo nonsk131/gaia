@@ -55,7 +55,6 @@ j = 0
 fig = plt.figure(figsize=((10,8)))
 ax = fig.add_subplot(1,1,1)
 for r_span in r_ensemble:
-    j = 0
     #for z_span in z_ensemble:
     z_span=2*u.kpc
     rmin = 8.3*u.kpc-r_span
