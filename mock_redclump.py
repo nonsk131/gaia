@@ -46,32 +46,33 @@ c = coord.ICRS(ra=data[:,0] * u.degree,
 gcentric = c.transform_to(coord.Galactocentric)
 gcentric.representation = 'cylindrical'
 
-#r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
-r_ensemble = np.linspace(0.1, 2.5, 26)*u.kpc
-z_ensemble = np.array([2])*u.kpc
-dis_array = np.zeros(len(r_ensemble))
+r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
+#r_ensemble = np.linspace(0.1, 2.5, 26)*u.kpc
+z_ensemble = np.array([0.1,0.5,1,1.5,2,2.5,3])*u.kpc
+dis_array = np.zeros((len(r_ensemble), len(z_ensemble)))
 i = 0
 j = 0
 fig = plt.figure(figsize=((10,8)))
 ax = fig.add_subplot(1,1,1)
 for r_span in r_ensemble:
-    #for z_span in z_ensemble:
-    z_span=2*u.kpc
-    rmin = 8.3*u.kpc-r_span
-    rmax = 8.3*u.kpc+r_span
-    n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
-    data_cut = data[n]
-    #dis = discrepancies(data_cut)
-    dis = dispersion(data_cut)
-    print len(n), dis
-    dis_array[j] = dis
-    j += 1
-ax.plot(r_ensemble, dis_array, linewidth=3)
+    j = 0
+    for z_span in z_ensemble:
+        rmin = 8.3*u.kpc-r_span
+        rmax = 8.3*u.kpc+r_span
+        n = np.where((gcentric.z < z_span) & (gcentric.z > -z_span) & (gcentric.rho > rmin) & (gcentric.rho < rmax))[0]
+        data_cut = data[n]
+        #dis = discrepancies(data_cut)
+        dis = dispersion(data_cut)
+        print len(n), dis
+        dis_array[i, j] = dis
+        j += 1
+    ax.plot(z_ensemble, dis_array[i], linewidth=3, label='r = {}'.format(r_span))
+    i += 1
 
 
 #ax.plot([0.1,3.5],[0.05, 0.05], linestyle='dashed', linewidth=2)
-ax.set_xlabel('r [kpc]')
+ax.set_xlabel('z [kpc]')
 ax.set_ylabel('dispersion')
-#ax.legend(loc='best')
-fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion4.png', dpi=300)
+ax.legend(loc='best')
+fig.savefig('/mnt/home/npanithanpaisal/gaia/dispersion5.png', dpi=300)
 np.savetxt('/mnt/home/npanithanpaisal/gaia/dispersion.txt', dis_array)
