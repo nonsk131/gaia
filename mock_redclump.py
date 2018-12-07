@@ -46,8 +46,8 @@ c = coord.ICRS(ra=data[:,0] * u.degree,
 gcentric = c.transform_to(coord.Galactocentric)
 gcentric.representation = 'cylindrical'
 
-#r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
-r_ensemble = np.linspace(0.1, 3, 31)*u.kpc
+r_ensemble = np.array([0.1,0.5,1,1.5,2])*u.kpc
+#r_ensemble = np.linspace(0.1, 3, 31)*u.kpc
 z_ensemble = np.array([2])*u.kpc
 dis_array = np.zeros(len(r_ensemble))
 i = 0
