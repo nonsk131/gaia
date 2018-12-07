@@ -33,6 +33,8 @@ def get_hist(gcentric):
     ax = fig.add_subplot(1,1,1)
     X, Y = np.meshgrid(e1, e2)
     im = ax.pcolormesh(X, Y, H, cmap='jet')
+    ax.set_xlim(rr[0], rr[-1])
+    ax.set_ylim(-2.5,2.5)
     fig.colorbar(im, ax =ax)
     fig.savefig('/mnt/home/npanithanpaisal/gaia/star_dist.png', dpi=300)
 
@@ -47,7 +49,7 @@ def get_hist(gcentric):
         for j, z in enumerate(z_center):
             r_array[k] = r
             z_array[k] = z
-            val[k] = H
+            val[k] = H[i,j]
             k += 1
 
     return r_array, z_array, val
