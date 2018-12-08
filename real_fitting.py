@@ -29,7 +29,7 @@ def get_hist(gcentric):
     print H
     #H_new = pad_withNan(H)
     #print H_new
-    fig = plt.figure(figsize=((12,8)))
+    fig = plt.figure(figsize=((12,6)))
     ax = fig.add_subplot(1,1,1)
     X, Y = np.meshgrid(e1, e2)
     im = ax.pcolormesh(X, Y, H, cmap='jet')
@@ -46,13 +46,16 @@ def get_hist(gcentric):
     r_center = 0.5*(rr[1:] + rr[:-1])
     z_center = 0.5*(zz[1:] + zz[:-1])
     k = 0
-    for i, r in enumerate(r_center):
-        for j, z in enumerate(z_center):
+    i = 0
+    for r in r_center:
+        j = 0
+        for z in z_center:
             r_array[k] = r
             z_array[k] = z
             val[k] = H[i,j]
+            j += 1
             k += 1
-
+        i += 1
     return r_array, z_array, val
 
 
@@ -71,10 +74,11 @@ def fit_func(X, rho, f, l1, h1, l2, h2):
 
 
 
-data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut.txt')
-
-data_m = pick_mstar(data)
-np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt', data_m)
+# data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut.txt')
+#
+# data_m = pick_mstar(data)
+# np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt', data_m)
+data_m = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt')
 print 'there are {} m-stars'.format(len(data_m))
 c = coord.ICRS(ra=data[:,2] * u.degree,
             dec=data[:,3] * u.degree,
