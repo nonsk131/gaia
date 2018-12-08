@@ -12,7 +12,7 @@ def pick_mstar(data, minmag=2.5, maxmag=3, gmin=5):
     return data[np.where((data[:,0]>gmin) & (data[:,1] > minmag) & (data[:,1] < maxmag))]
 
 def get_bin_edges():
-    r_edges = np.linspace(np.linspace(6.5,10.1,361))*u.kpc
+    r_edges = np.linspace(6.5,10.1,361)*u.kpc
     z_edges = np.linspace(-2.5,2.5,1001)*u.kpc
     return r_edges, z_edges
 
@@ -74,6 +74,7 @@ def fit_func(X, rho, f, l1, h1, l2, h2):
 data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut.txt')
 
 data_m = pick_mstar(data)
+np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt', data_m)
 print 'there are {} m-stars'.format(len(data_m))
 c = coord.ICRS(ra=data[:,2] * u.degree,
             dec=data[:,3] * u.degree,
