@@ -12,8 +12,10 @@ def pick_mstar(data, minmag=2.5, maxmag=3, gmin=5):
     return data[np.where((data[:,0]>gmin) & (data[:,1] > minmag) & (data[:,1] < maxmag))]
 
 def get_bin_edges():
-    r_edges = np.linspace(6.5,10.1,361)*u.kpc
-    z_edges = np.linspace(-2.5,2.5,1001)*u.kpc
+    #r_edges = np.linspace(6.5,10.1,361)*u.kpc
+    #z_edges = np.linspace(-2.5,2.5,1001)*u.kpc
+    r_edges = np.linspace(6.5,10.1,37)*u.kpc
+    z_edges = np.linspace(-2.5,2.5,101)*u.kpc
     return r_edges, z_edges
 
 def pad_withNan(p):
@@ -80,9 +82,9 @@ def fit_func(X, rho, f, l1, h1, l2, h2):
 # np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt', data_m)
 data_m = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt')
 print 'there are {} m-stars'.format(len(data_m))
-c = coord.ICRS(ra=data[:,2] * u.degree,
-            dec=data[:,3] * u.degree,
-            distance=(1./data[:,4]) * u.kpc)
+c = coord.ICRS(ra=data_m[:,2] * u.degree,
+            dec=data_m[:,3] * u.degree,
+            distance=(1./data_m[:,4]) * u.kpc)
 
 gcentric = c.transform_to(coord.Galactocentric)
 gcentric.representation = 'cylindrical'
