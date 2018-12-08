@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
 #Mg,bp_rp,ra,dec,parallax,phot_g_mean_mag
-def pick_mstar(data, minmag=2.5, maxmag=3, gmin=5):
-    return data[np.where((data[:,0]>gmin) & (data[:,1] > minmag) & (data[:,1] < maxmag))]
+def pick_mstar(data, minmag=0.75, maxmag=1.05, gmin=4.5, gmax=8):
+    return data[np.where((data[:,0]>gmin) & (data[:,0]<gman) & (data[:,1] > minmag) & (data[:,1] < maxmag))]
 
 def get_bin_edges():
     #r_edges = np.linspace(6.5,10.1,361)*u.kpc
@@ -76,16 +76,17 @@ def fit_func(X, rho, f, l1, h1, l2, h2):
 
 
 
-# data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut.txt')
+data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut.txt')
 #
-# data_m = pick_mstar(data)
-# np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt', data_m)
-data_m = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt')
-print 'there are {} m-stars'.format(len(data_m))
-c = coord.ICRS(ra=data_m[:,2] * u.degree,
-            dec=data_m[:,3] * u.degree,
-            distance=(1./data_m[:,4]) * u.kpc)
+data_g = pick_mstar(data)
+np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut_gstar.txt', data_m)
 
-gcentric = c.transform_to(coord.Galactocentric)
-gcentric.representation = 'cylindrical'
-get_hist(gcentric)
+# data_m = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt')
+# print 'there are {} m-stars'.format(len(data_m))
+# c = coord.ICRS(ra=data_m[:,2] * u.degree,
+#             dec=data_m[:,3] * u.degree,
+#             distance=(1./data_m[:,4]) * u.kpc)
+#
+# gcentric = c.transform_to(coord.Galactocentric)
+# gcentric.representation = 'cylindrical'
+# get_hist(gcentric)
