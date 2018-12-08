@@ -12,8 +12,8 @@ def pick_mstar(data, minmag=2.5, maxmag=3, gmin=5):
     return data[np.where((data[:,0]>gmin) & (data[:,1] > minmag) & (data[:,1] < maxmag))]
 
 def get_bin_edges():
-    r_edges = np.linspace(6.5,10.1,37)*u.kpc
-    z_edges = np.linspace(-2.5,2.5,101)*u.kpc
+    r_edges = np.linspace(np.linspace(6.5,10.1,361))*u.kpc
+    z_edges = np.linspace(-2.5,2.5,1001)*u.kpc
     return r_edges, z_edges
 
 def pad_withNan(p):
@@ -33,7 +33,8 @@ def get_hist(gcentric):
     ax = fig.add_subplot(1,1,1)
     X, Y = np.meshgrid(e1, e2)
     im = ax.pcolormesh(X, Y, H, cmap='jet')
-    ax.set_xlim(rr[0], rr[-1])
+    print rr[0], rr[-1]
+    ax.set_xlim(6.5, 10.1)
     ax.set_ylim(-2.5,2.5)
     fig.colorbar(im, ax =ax)
     fig.savefig('/mnt/home/npanithanpaisal/gaia/star_dist.png', dpi=300)
