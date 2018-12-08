@@ -79,7 +79,7 @@ def fit_func(X, rho, f, l1, h1, l2, h2):
 data = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut.txt')
 #
 data_g = pick_mstar(data)
-np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut_gstar.txt', data_m)
+np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut_gstar.txt', data_g)
 
 # data_m = np.loadtxt('/mnt/home/npanithanpaisal/gaia/real_175cut_mstar.txt')
 # print 'there are {} m-stars'.format(len(data_m))
