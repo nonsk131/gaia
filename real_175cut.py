@@ -16,8 +16,8 @@ def read_real_data():
     gcentric = c.transform_to(coord.Galactocentric)
     gcentric.representation = 'cylindrical'
 
-    n = np.append(np.where((gcentric.phi > 178*u.deg))[0], np.where((gcentric.phi < -178*u.deg))[0])
+    n = np.append(np.where((gcentric.phi > 175*u.deg))[0], np.where((gcentric.phi < -175*u.deg))[0])
     return data[n]
 
 data = read_real_data()
-np.savetxt('/mnt/home/npanithanpaisal/gaia/real_178cut.txt', data)
+np.savetxt('/mnt/home/npanithanpaisal/gaia/real_175cut.txt', data)
